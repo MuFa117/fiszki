@@ -11,9 +11,12 @@ body, html {
 .container {
     text-align: center;
     padding: 20px;
+    margin: 10px;
     border-radius: 10px;
     background-color: #fff;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    width: 100%;
+    max-width: 400px;
 }
 
 .word-display {
@@ -31,7 +34,7 @@ body, html {
 button, #translateButton {
     font-size: 1rem;
     padding: 10px 20px;
-    margin: 0 10px;
+    width: 100%;
     cursor: pointer;
     border: none;
     border-radius: 5px;
@@ -71,7 +74,7 @@ button:hover, #translateButton:hover {
     display: none; /* Hide the actual radio input */
 }
 
-.radio-group input[type="radio"]:checked + label {
+.radio-group input[type="radio"]:checked {
     background-color: #388E3C; /* Darker shade when selected */
 }
 
