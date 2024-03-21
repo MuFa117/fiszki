@@ -9,10 +9,11 @@
 <body>
     <div class="container">
         <div id="wordDisplay" class="word-display">Tap to start</div>
-        <div class="controls">
-            <button id="polishFirst">Polish First</button>
-            <button id="spanishFirst">Spanish First</button>
-            <button id="randomOrder">Random</button>
+        <button id="translateButton">Translate</button>
+        <div class="radio-group">
+            <label><input type="radio" name="mode" value="plToEs" checked> Polish to Spanish</label>
+            <label><input type="radio" name="mode" value="esToPl"> Spanish to Polish</label>
+            <label><input type="radio" name="mode" value="random"> Random</label>
         </div>
     </div>
     <script src="script.js"></script>
