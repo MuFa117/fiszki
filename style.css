@@ -5,24 +5,71 @@ body, html {
     justify-content: center;
     align-items: center;
     font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
 }
 
 .container {
     text-align: center;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
 .word-display {
     font-size: 2rem;
     padding: 20px;
-    border: 2px solid #000;
+    border: 2px solid #4CAF50;
+    color: #333;
     margin-bottom: 20px;
     cursor: pointer;
     user-select: none;
+    border-radius: 5px;
+    background-color: #e8f5e9;
 }
 
-button {
+button, #translateButton {
     font-size: 1rem;
     padding: 10px 20px;
     margin: 0 10px;
     cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    background-color: #4CAF50;
+    color: white;
+    transition: background-color 0.3s ease;
+}
+
+button:hover, #translateButton:hover {
+    background-color: #388E3C;
+}
+
+.radio-group {
+    margin-top: 20px;
+}
+
+.radio-group label {
+    font-size: 1rem;
+    color: #555;
+    margin-right: 15px;
+    cursor: pointer;
+}
+
+.radio-group input[type="radio"] {
+    display: none;
+}
+
+.radio-group input[type="radio"] + label:before {
+    content: "";
+    display: inline-block;
+    margin-right: 10px;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: 2px solid #4CAF50;
+    vertical-align: bottom;
+}
+
+.radio-group input[type="radio"]:checked + label:before {
+    background-color: #4CAF50;
 }
