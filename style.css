@@ -43,33 +43,40 @@ button, #translateButton {
 button:hover, #translateButton:hover {
     background-color: #388E3C;
 }
-
-.radio-group {
-    margin-top: 20px;
-}
-
 .radio-group label {
     font-size: 1rem;
     color: #555;
-    margin-right: 15px;
+    margin: 10px;
     cursor: pointer;
+    position: relative;
+    padding-left: 30px;
 }
 
 .radio-group input[type="radio"] {
     display: none;
 }
 
-.radio-group input[type="radio"] + label:before {
-    content: "";
-    display: inline-block;
-    margin-right: 10px;
-    width: 18px;
-    height: 18px;
+.radio-group label:before, .radio-group label:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
     border-radius: 50%;
-    border: 2px solid #4CAF50;
-    vertical-align: bottom;
 }
 
-.radio-group input[type="radio"]:checked + label:before {
-    background-color: #4CAF50;
+.radio-group label:before {
+    width: 20px;
+    height: 20px;
+    background-color: #fff;
+    border: 2px solid #4CAF50;
 }
+
+.radio-group input[type="radio"]:checked + label:after {
+    width: 12px;
+    height: 12px;
+    background-color: #4CAF50;
+    border: none;
+    left: 4px;
+}
+
