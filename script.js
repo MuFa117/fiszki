@@ -1,8 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     const wordDisplay = document.getElementById('wordDisplay');
-    const polishFirstBtn = document.getElementById('polishFirst');
-    const spanishFirstBtn = document.getElementById('spanishFirst');
-    const randomOrderBtn = document.getElementById('randomOrder');
+    const translateButton = document.getElementById('translateButton');
+    const modeRadios = document.querySelectorAll('input[name="mode"]');
 
     const vocabulary = [
         { polish: "kot", spanish: "gato" },
@@ -121,45 +120,36 @@ document.addEventListener('DOMContentLoaded', function() {
         { polish: "w tym tygodniu", spanish: "esta semana" },
         // Add more pairs here
     ];
+    
+    let currentWordIndex = -1;
+    let currentLanguage = 'polish';
 
-    let currentWordIndex = 0;
-    let displayPolishFirst = true;
-    let randomOrder = false;
+    function getRandomWordIndex() {
+        return Math.floor(Math.random() * vocabulary.length);
+    }
 
-    const showWord = () => {
-        if (randomOrder) displayPolishFirst = Math.random() < 0.5;
-        const wordPair = vocabulary[currentWordIndex];
-        wordDisplay.textContent = displayPolishFirst ? wordPair.polish : wordPair.spanish;
-    };
+    function updateWordDisplay() {
+        currentWordIndex = getRandomWordIndex();
+        let mode = document.querySelector('input[name="mode"]:checked').value;
+        if (mode === 'random') {
+            currentLanguage = Math.random() < 0.5 ? 'polish' : 'spanish';
+        } else {
+            currentLanguage = mode === 'plToEs' ? 'polish' : 'spanish';
+        }
+        wordDisplay.textContent = vocabulary[currentWordIndex][currentLanguage];
+    }
 
-    const toggleWord = () => {
-        const wordPair = vocabulary[currentWordIndex];
-        wordDisplay.textContent = wordDisplay.textContent === wordPair.polish ? wordPair.spanish : wordPair.polish;
-    };
+    function translateWord() {
+        const targetLanguage = currentLanguage === 'polish' ? 'spanish' : 'polish';
+        wordDisplay.textContent = vocabulary[currentWordIndex][targetLanguage];
+        currentLanguage = targetLanguage; // Update current language after translation
+    }
 
-    polishFirstBtn.addEventListener('click', () => {
-        displayPolishFirst = true;
-        randomOrder = false;
-        showWord();
-    });
+    wordDisplay.addEventListener('click', updateWordDisplay);
+    translateButton.addEventListener('click', translateWord);
 
-    spanishFirstBtn.addEventListener('click', () => {
-        displayPolishFirst = false;
-        randomOrder = false;
-        showWord();
-    });
+    modeRadios.forEach(radio => radio.addEventListener('change', updateWordDisplay));
 
-    randomOrderBtn.addEventListener('click', () => {
-        randomOrder = true;
-        showWord();
-    });
-
-    wordDisplay.addEventListener('click', () => {
-        if (vocabulary.length === 0) return;
-        toggleWord();
-        currentWordIndex = (currentWordIndex + 1) % vocabulary.length;
-    });
-
-    // Initialize the first word
-    showWord();
+    // Initialize the app with a word
+    updateWordDisplay();
 });
